@@ -16,9 +16,11 @@ db.once('open', function () {
 });
 
 const app = express();
-app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+app.use(cors());
+app.use(express.json());
+
+const PORT = process.env.PORT || 3002;
 
 app.get('/', (request, response) => {
 
@@ -36,7 +38,32 @@ async function getBooks(request, response, next) {
   } catch (error) {
     next(error);
   }
+}
 
+app.post('/books', postBooks);
+
+async function postBooks(request, response, next) {
+  console.log(request.body);
+  try {
+    const newBook = await Book.create(request.body);
+    response.status(201).send(newBook);
+
+  } catch (error) {
+    next(error);
+  }
+}
+
+app.delete('/books/:bookid', deleteBook);
+
+async function deleteBook(request, response, next) {
+  const id = request.params.bookid;
+  console.log(id);
+  try {
+    await Book.findByIdAndDelete(id);
+    response.status(204).send('success!');
+  } catch (error) {
+    next(error);
+  }
 }
 
 app.get('*', (request, response) => {
