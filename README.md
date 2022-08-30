@@ -36,4 +36,4 @@ Junyoung Son - Collaborator
 [frontend](https://github.com/brandomoki/can-of-books-backend)
 [backend](https://github.com/Junyoungson808/can-of-books-frontend)
 [netlify](https://radiant-arithmetic-aa4507.netlify.app/)
-[heroku](https://radiant-arithmetic-aa4507.netlify.app/)
+[heroku](https://can-of-books-lab.herokuapp.com/)
